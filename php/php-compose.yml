@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  php-cli:
+    image: php:local
+    container_name: php
+    build:
+      context: ./php
+      dockerfile: php.dockerfile
+      labels:
+        - com.nolan.description=php-cli image
+        - com.nolan.author=nolan
+    networks:
+      - web

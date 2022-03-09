@@ -1,65 +1,6 @@
 # docker-compose up
 
 version: "3.9"
-services:
-  nginx:
-    image: nginx:1.21.6
-    container_name: nginx
-    profiles:
-      - web
-    restart: always
-    volumes:
-      - ./nginx:/etc/nginx
-      - ./logs:/var/log
-      - ${PHP_HOME}:/data/php
-    ports:
-      - "80"
-    networks:
-      - web
-  php-fpm:
-    build: 
-      context: ./php-fpm
-      dockerfile: php-fpm.dockerfile
-      labels:
-        - com.nolan.description=php-fpm with development requirements
-        - com.nolan.author=nolan
-    image: php-fpm:local
-    container_name: php-fpm
-    profiles:
-      - web
-    restart: always
-    networks:
-      - web
-    volumes:
-      - ./logs:/var/log
-      - ./logs:/data/l80:ogs
-      - ${PHP_HOME}:/data/php
-    ports:
-      - "9001:9001"
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.0.1
-    container_name: elasticsearch
-    profiles:
-      - "es"
-    networks:
-      - web
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    volumes:
-      - "/data/elasticsearch:/usr/share/elasticsearch/data"
-    environment:
-      - xpack.security.enabled=false
-      - discovery.type=single-node
-      - cluster.name=elastic
-  php-cli:
-    image: php:local
-    build:
-      context: ./php
-      dockerfile: php.dockerfile
-      labels:
-        - com.nolan.description=php-cli image
-        - com.nolan.author=nolan
 networks:
   web:
     driver: bridge

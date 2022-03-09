@@ -1,0 +1,18 @@
+# docker-compose up
+
+version: "3.9"
+services:
+  nginx:
+    image: nginx:1.21.6
+    container_name: nginx
+    profiles:
+      - web
+    restart: always
+    volumes:
+      - ./nginx:/etc/nginx
+      - ./logs:/var/log
+      - ${PHP_HOME}:/data/php
+    ports:
+      - "80"
+    networks:
+      - web
