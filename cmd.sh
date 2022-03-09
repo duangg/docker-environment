@@ -1,9 +1,9 @@
-# composer install 
-docker run --rm -v $(pwd):/app -v $HOME/.composer:/root/.composer php:meicai composer install
-
+# some alias
+alias composer='docker run --rm -v $(pwd):/app -v $HOME/.composer:/root/.composer php:local composer'
+alias dc='docker-compose'
 # start composer
-docker-compose up -d
-docker-compose start
-docker-compose stop
-docker-compose down
+dc up -d
+dc start
+dc stop
+dc down
 

@@ -17,7 +17,13 @@ services:
     networks:
       - web
   php-fpm:
-    image: php-fpm:meicai
+    build: 
+      context: ./php-fpm
+      dockerfile: php-fpm.dockerfile
+      labels:
+        - com.nolan.description=php-fpm with development requirements
+        - com.nolan.author=nolan
+    image: php-fpm:local
     container_name: php-fpm
     profiles:
       - web
@@ -46,6 +52,14 @@ services:
       - xpack.security.enabled=false
       - discovery.type=single-node
       - cluster.name=elastic
+  php-cli:
+    image: php:local
+    build:
+      context: ./php
+      dockerfile: php.dockerfile
+      labels:
+        - com.nolan.description=php-cli image
+        - com.nolan.author=nolan
 networks:
   web:
     driver: bridge
