@@ -7,6 +7,8 @@ services:
     container_name: nginx
     profiles:
       - web
+    depends_on:
+      - php-fpm
     restart: always
     volumes:
       - ./nginx:/etc/nginx

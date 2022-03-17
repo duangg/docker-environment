@@ -3,7 +3,7 @@ services:
   php-fpm:
     build: 
       context: ./php-fpm
-      dockerfile: php-fpm.dockerfile
+      dockerfile: ./php-fpm.dockerfile
       labels:
         - com.nolan.description=php-fpm with development requirements
         - com.nolan.author=nolan
@@ -15,8 +15,8 @@ services:
     networks:
       - web
     volumes:
-      - ./logs:/var/log
-      - ./logs:/data/l80:ogs
+      - ../logs:/var/log
+      - ../logs:/data/logs
       - ${PHP_HOME}:/data/php
     ports:
       - "9001:9001"
