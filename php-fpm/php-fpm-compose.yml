@@ -15,8 +15,8 @@ services:
     networks:
       - web
     volumes:
-      - ../logs:/var/log
-      - ../logs:/data/logs
+      - ./logs:/var/log
+      - ./logs:/data/logs
       - ${PHP_HOME}:/data/php
     ports:
       - "9001:9001"
