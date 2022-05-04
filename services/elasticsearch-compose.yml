@@ -11,8 +11,11 @@ services:
       - "9200:9200"
       - "9300:9300"
     volumes:
-      - "/data/elasticsearch:/usr/share/elasticsearch/data"
+      - "elasticsearch:/usr/share/elasticsearch/data"
     environment:
       - xpack.security.enabled=false
       - discovery.type=single-node
       - cluster.name=elastic
+volumes:
+  elasticsearch:
+    driver: local
